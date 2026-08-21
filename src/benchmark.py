@@ -1,4 +1,3 @@
-import numpy as np
 import pandas as pd
 from sklearn.metrics import roc_auc_score
 from sklearn.model_selection import train_test_split
@@ -33,7 +32,6 @@ def benchmark_auc(y_true, z_scores):
     gini = 2 * auc - 1
 
     return auc, gini
-
 
 
 if __name__ == "__main__":
