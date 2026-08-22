@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 from sklearn import datasets, linear_model, preprocessing
 from sklearn.model_selection import StratifiedKFold, train_test_split
+from imblearn.over_sampling import SMOTE
 
 from cleaning import drop_missing
 
@@ -34,3 +35,18 @@ for fold, (train_idx, val_idx) in enumerate(
 ):
     X_tr, y_tr = X_train.iloc[train_idx], y_train.iloc[train_idx]
     X_val, y_val = X_train.iloc[val_idx], y_train.iloc[val_idx]
+
+
+def balance_classes(X_tr, y_tr, method):
+
+    if method == "smote":
+        smote = SMOTE(random_state=42   )
+        X_resampled, y_resampled = smote.fit_resample(X_tr, y_tr)
+
+        return X_resampled, y_resampled
+
+    elif method == "class_weight":
+        pass
+
+    else:
+        return "No such method found"
